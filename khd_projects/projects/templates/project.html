@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+
+      <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+                        <div class="project_item">
+
+                        <div class="project_atributes">
+                        <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        <b>Category:  {{ project.category }}</b>
+                            <b>Sub category:  {{ project.sub_category }}</b>
+                            <b>Level:  {{ project.difficulty_level }}</b>
+                        <b>Publication date: {{ project.pub_date }}</b>
+                        <b>Likes = {{ project.likes }}</b>
+                          <li class="btn btn-primary" id ="likes" data-notid="{{project.id}}" class="btn btn-primary" type="button">Like</li>
+                        </div>
+                        </div>
+                              <h1>{{ project.title }}</h1>
+
+    <div>
+      {% load markdown_filter %}
+
+      {{ project.article|custom_markdown|safe}}
+
+    </div>
+
+{% endblock %}

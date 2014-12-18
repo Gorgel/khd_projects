@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="panel_heading">
+              <h3 class="panel-title"><b>{{ category.category }} projects</b></h3>
+          </div>
+          <div class="panel panel-default">
+
+            <div class="panel-body">
+    
+                        {% for project in projects %}
+                        <div class="project_item">
+                        <h3>
+                            <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
+                        </h3>
+                        <div class="project_atributes">
+                        <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        <b>Category:  {{ project.category }}</b>
+                        <b>Publication date: {{ project.pub_date }}</b>
+                        <b>Likes = {{ project.likes }}</b>
+                        <b>Views = {{ project.views }}</b>
+                        </div>
+                        <p>{{ project.description }}</p>
+                        </div>
+                        {% endfor %}
+                
+                </div>
+              
+                <div class="pagination">
+                                {% if projects.has_previous %}
+                                <li><a href="?page={{ projects.previous_page_number }}">&laquo;</a></li>
+                                    {% endif %}
+                                        <li><a>Page {{ projects.number }} of {{ projects.paginator.num_pages }}</a></li>
+                                    {% if projects.has_next %}
+                                        <li><a href="?page={{ projects.next_page_number }}">&raquo</a></li>
+                                    {% endif %}
+                                </span>
+                            </div>
+              
+            </div>
+{% endblock %}

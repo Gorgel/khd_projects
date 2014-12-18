@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+                <div class="col-sm-4">
+                  <div class="panel panel-default">
+                    <div class="panel_heading">
+                      <h3 class="panel-title"><b>Profile picture</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        {% if profile_user_profile.picture %}
+                        <img class="profile-picture" src="{{ profile_user_profile.picture.url }}">
+                        {% else %}
+                        <p>{{ profile_user.username }} has not uploaded a profile picture</p>
+                            
+                        {% endif %}
+
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-sm-8">
+                  <div class="panel panel-default">
+                    <div class="panel_heading">
+                      <h3 class="panel-title"><b>Information</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        
+                        <div class="project_item">
+                            <b>Username:</b> {{ profile_user.username }}
+                        </div>
+                        
+                        <div class="project_item">
+                            <b>Email:</b> {{ profile_user.email }}
+                        </div>
+                        
+                        <div class="project_item">
+                            <b>First name:</b> {{ profile_user.first_name }}
+                        </div>
+                        
+                        <div class="project_item">
+                            <b>Last Name:</b> {{ profile_user.last_name }}
+                        </div>
+                        
+                        <div class="project_item">
+                            <b>Description:</b> {{ profile_user_profile.description }}
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                          <div class="panel panel-default">
+                            <div class="panel_heading">
+                              <h3 class="panel-title">Published projects</h3>
+                            </div>
+                            <div class="panel-body">        
+                        
+                        <div class="col-sm-12">
+                            
+                            {% if profile_user_projects %}
+                              {% for project in profile_user_projects %}
+                        <div class="project_item">
+                        <h3>
+                            <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
+                        </h3>
+                        <div class="project_atributes">
+                        <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        <b>Category:  {{ project.category }}</b>
+                        <b>Publication date: {{ project.pub_date }}</b>
+                        <b>Likes = {{ project.likes }}</b>
+                        <b>Views = {{ project.views }}</b>
+                        </div>
+                        <p>{{ project.description }}</p>
+                        </div>
+                        {% endfor %}
+                      {% else %}
+                      <a href="{% url 'projects:add_project' %}" class="list-group-item">
+                      <h4 class="list-group-item-heading">No published projects</h4>
+                      <p class="list-group-item-text">Publish a project by by klicking here!</p>
+                    </a>
+                      {% endif %}
+                            
+                        </div><!-- /.col-sm-4 -->
+                
+                    </div>
+                  </div>
+                </div>
+
+{% endblock %}
+
+<div class="col-sm-4">
+                    
+                </div><!-- /.col-sm-4 -->
+                
+                <div class="col-sm-8">
+                  
+                </div><!-- /.col-sm-4 -->
