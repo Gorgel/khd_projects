@@ -10,7 +10,11 @@ body {
 }
 
 img {
-    max-width:100%
+    max-width:100%;
+}
+
+iframe {
+    max-width:100%;
 }
 
 .profile-picture {
