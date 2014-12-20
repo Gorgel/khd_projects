@@ -22,6 +22,10 @@ iframe {
     max-height:100%;
 }
 
+.navbar-inverse .navbar-collapse {
+    background-color: #24282B;
+}
+
 .container.border {
     background: white;
     padding-left: 40px;
