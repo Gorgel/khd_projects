@@ -8,3 +8,9 @@ admin.site.register(Category)
 admin.site.register(SubCategory)
 admin.site.register(DifficultyLevel)
 
+class ProjectAdmin(admin.ModelAdmin):
+    class Media:
+        js = [
+        '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
+        '/static/path/to/your/tinymce_setup.js',
+    ]

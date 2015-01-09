@@ -17,12 +17,25 @@ class UserProfileForm(forms.ModelForm):
 
 class ProjectForm(forms.ModelForm):
     article = forms.CharField(max_length=6000, required=False, widget=forms.Textarea())
-    title = forms.CharField(max_length=120)
+    title = forms.CharField(max_length=120, required=True)
     description = forms.CharField(max_length=300, required=False, widget=forms.Textarea())
 
     class Meta:
         model = Project
-        fields = ('article', 'title', 'description', 'category',)
+        fields = ('category', 'sub_category', 'difficulty_level', 'title', 'description', 'article',  )
+
+class ProjectEditForm(forms.ModelForm):
+    article = forms.CharField(max_length=6000, required=False, widget=forms.Textarea())
+    title = forms.CharField(max_length=120, required=False)
+    description = forms.CharField(max_length=300, required=False, widget=forms.Textarea())
+
+    class Meta:
+        model = Project
+        fields = ('category', 'sub_category', 'difficulty_level', 'title', 'description', 'article',  )
 
 
+class CheckboxesForm(forms.Form):
+    choices = forms.BooleanField()
 
+class RadioboxForm(forms.Form):
+    choices = forms.ChoiceField(widget=forms.RadioSelect())

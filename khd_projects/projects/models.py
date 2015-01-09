@@ -40,11 +40,10 @@ class Project(models.Model):
     category = models.ForeignKey(Category)
     sub_category = models.ForeignKey(SubCategory)
     difficulty_level = models.ForeignKey(DifficultyLevel)
-    title = models.CharField(max_length=120, unique=True)
+    title = models.CharField(max_length=120)
     description = models.TextField(max_length=200, blank=True)
     article = models.TextField(max_length = 60000, blank=True)
     slug = AutoSlugField(populate_from='title', unique = True)
-    #slug = models.SlugField(unique=True)
     likes = models.IntegerField(default=0)
 
 

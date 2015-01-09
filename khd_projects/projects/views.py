@@ -1,14 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, Http404
-#from django.contrib.auth import authenticate, login, logout
-from django import forms
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
 from models import UserProfile, User, Category, Project
-from forms import ProjectForm, UserForm, UserProfileForm
-#from django.contrib.auth.decorators import login_required
-from khd_projects.settings import BASE_DIR, MEDIA_URL
-#import subprocess
-import os
-from django.utils.text import slugify
+from forms import ProjectForm, UserForm, UserProfileForm, CheckboxesForm, RadioboxForm, ProjectEditForm
+from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -27,23 +22,11 @@ def index(request):
 
 def profile_page(request, username):
 
-    profile_user = User.objects.get(username=username)
+    user = User.objects.get(username=username)
+    user_profile = UserProfile.objects.get(user=user)
+    user_projects = Project.objects.filter(user=user)
 
-    try:
-        profile_user_profile = UserProfile.objects.get(user=profile_user)
-
-    except:
-        profile_user_profile = None
-
-    projects = Project.objects.all()
-
-    profile_user_projects = []
-    for project in projects:
-        if project.user == profile_user:
-            profile_user_projects.append(project)
-
-    context = {'profile_user_projects' : profile_user_projects, 'profile_user': profile_user, 'profile_user_profile' : profile_user_profile}
-
+    context = {'user' : user, 'user_profile' : user_profile, 'user_projects' : user_projects}
 
     return render(request, 'profile_page.html', context)
 
@@ -72,13 +55,106 @@ def category_page(request, category):
 def project_viewer(request, id, category, slug):
 
     project = Project.objects.get(pk=id)
-    #project_html = 'content/' + user + '/' + slug + '.html'
-    #filename = 'content/' + user + '/' + slug + '.ipynb'
 
     context = {'project' : project}
 
     return render(request, "project.html", context)
 
+@login_required
+def delete_projects(request):
+
+    user = User.objects.get(username=request.user)
+    user_projects = Project.objects.filter(user=user)
+
+    if request.method == 'POST':
+
+        choices = request.POST.getlist('choices')
+        for project_id in choices:
+            Project.objects.filter(id=project_id).delete()
+
+        context = {'user' : user, 'user_projects' : user_projects}
+        return render(request, 'delete_projects.html', context)
+
+    else:
+        form = CheckboxesForm()
+        context = {'user' : user, 'user_projects' : user_projects, 'form' : form}
+        return render(request, 'delete_projects.html', context)
+
+@login_required
+def add_project(request):
+
+    user = User.objects.get(username=request.user)
+
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+
+            model_instance = form.save(commit=False)
+            model_instance.user = user
+            model_instance.save()
+
+            message = 'Thanks for adding a project!'
+
+            context = {'message' : message}
+            return render(request, "thanks.html", context)
+    else:
+        form = ProjectForm()
+
+    context = { 'form' : form}
+
+    return render(request, "add_project.html", context)
+
+@login_required
+def edit_project(request, id):
+
+    project_id = int(id)
+    user = User.objects.get(username=request.user)
+    user_projects = Project.objects.filter(user=user)
+
+    id_list = []
+    for project in user_projects:
+        id_list.append(int(project.id))
+
+    if project_id in id_list:
+
+        if request.method == "POST":
+            form = ProjectEditForm(request.POST)
+
+            if form.is_valid():
+                Project.objects.filter(id=project_id).delete()
+                model_instance = form.save(commit=False)
+                model_instance.user = user
+                model_instance.save()
+
+                message = 'Your project was edited successfully!'
+
+                context = context = {'message' : message}
+                return render(request, "thanks.html", context)
+
+            else:
+                context = {'form' : form }
+                return render(request, 'edit_project.html', context)
+
+        project = Project.objects.filter(id=project_id)
+        data = { 'title' : project[0].title, 'description' : project[0].description, 'article' : project[0].article }
+        form = ProjectForm(initial=data)
+        context = {'form' : form}
+        return render(request, 'edit_project.html', context)
+
+    else:
+        message = 'You can only change you own projects!'
+        context = { 'message' : message , 'id' : id, 'id_list': id_list}
+        return render(request, 'thanks.html', context)
+
+@login_required
+def edit_projects_page(request):
+
+    user = User.objects.get(username=request.user)
+    user_projects = Project.objects.filter(user=user)
+
+    form = RadioboxForm()
+    context = {'user' : user, 'user_projects' : user_projects, 'form' : form, 'request' : request}
+    return render(request, 'edit_projects_page.html', context)
 
 def like_project(request):
 
@@ -96,6 +172,38 @@ def like_project(request):
 
     return HttpResponse(likes)
 
+def user_login(request):
+
+
+    if request.method == 'POST':
+
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+
+            if user.is_active:
+
+                login(request, user)
+                return redirect('/projects')
+            else:
+                return HttpResponse("Your account is disabled.")
+        else:
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("Invalid login details supplied.")
+
+    else:
+        context = {}
+        return render(request, 'login.html', context)
+
+@login_required
+def user_logout(request):
+
+    logout(request)
+
+    return redirect('/projects')
 
 def twitter_license(request):
 

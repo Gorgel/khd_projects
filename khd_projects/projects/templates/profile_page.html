@@ -9,9 +9,9 @@
                     </div>
                     <div class="panel-body">
                         {% if profile_user_profile.picture %}
-                        <img class="profile-picture" src="{{ profile_user_profile.picture.url }}">
+                        <img class="profile-picture" src="{{ user_profile.picture.url }}">
                         {% else %}
-                        <p>{{ profile_user.username }} has not uploaded a profile picture</p>
+                        <p>{{ user.username }} has not uploaded a profile picture</p>
                             
                         {% endif %}
 
@@ -27,23 +27,23 @@
                     <div class="panel-body">
                         
                         <div class="project_item">
-                            <b>Username:</b> {{ profile_user.username }}
+                            <b>Username:</b> {{ user.username }}
                         </div>
                         
                         <div class="project_item">
-                            <b>Email:</b> {{ profile_user.email }}
+                            <b>Email:</b> {{ user.email }}
                         </div>
                         
                         <div class="project_item">
-                            <b>First name:</b> {{ profile_user.first_name }}
+                            <b>First name:</b> {{ user.first_name }}
                         </div>
                         
                         <div class="project_item">
-                            <b>Last Name:</b> {{ profile_user.last_name }}
+                            <b>Last Name:</b> {{ user.last_name }}
                         </div>
                         
                         <div class="project_item">
-                            <b>Description:</b> {{ profile_user_profile.description }}
+                            <b>Description:</b> {{ user_profile.description }}
                         </div>
                     </div>
                   </div>
@@ -58,8 +58,8 @@
                         
                         <div class="col-sm-12">
                             
-                            {% if profile_user_projects %}
-                              {% for project in profile_user_projects %}
+                            {% if user_projects %}
+                              {% for project in user_projects %}
                         <div class="project_item">
                         <h3>
                             <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
@@ -77,7 +77,7 @@
                       {% else %}
                       <a href="{% url 'projects:add_project' %}" class="list-group-item">
                       <h4 class="list-group-item-heading">No published projects</h4>
-                      <p class="list-group-item-text">Publish a project by by klicking here!</p>
+                      <p class="list-group-item-text">Publish a project by by clicking here!</p>
                     </a>
                       {% endif %}
                             

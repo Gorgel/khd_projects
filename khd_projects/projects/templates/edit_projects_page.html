@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+                <div class="col-sm-12">
+                    <h2>Click project to edit!</h2>
+                    <form name="inform" action="" method="POST">
+                        {% csrf_token %}
+                          <div class="panel panel-default">
+                            <div class="panel_heading">
+                              <h3 class="panel-title">Published projects</h3>
+                            </div>
+                            <div class="panel-body">
+
+                        <div class="col-sm-12">
+
+                            {% if user_projects %}
+                              {% for project in user_projects %}
+                        <div class="project_item">
+                        <h3>
+                            <a href="{% url 'projects:edit_project' project.id %}">{{ project.title }}</a>
+                        </h3>
+                        <div class="project_atributes">
+                        <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        <b>Category:  {{ project.category }}</b>
+                        <b>Publication date: {{ project.pub_date }}</b>
+                        <b>Likes = {{ project.likes }}</b>
+                        <b>Views = {{ project.views }}</b>
+                        </div>
+                        <p>{{ project.description }}</p>
+                        </div>
+
+                        {% endfor %}
+                      {% else %}
+                      <a href="{% url 'projects:add_project' %}" class="list-group-item">
+                      <h4 class="list-group-item-heading">No published projects</h4>
+                      <p class="list-group-item-text">Publish a project by by clicking here!</p>
+                    </a>
+                      {% endif %}
+                        </div><!-- /.col-sm-4 -->
+                    </div>
+                  </div>
+                </form>
+                </div>
+
+
+{% endblock %}
