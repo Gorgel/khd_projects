@@ -1,5 +1,5 @@
 from django import forms
-from models import Project, UserProfile, User
+from models import Project, UserProfile, User, SubCategory, DifficultyLevel
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -39,3 +39,7 @@ class CheckboxesForm(forms.Form):
 
 class RadioboxForm(forms.Form):
     choices = forms.ChoiceField(widget=forms.RadioSelect())
+
+class CategoryFilterForm(forms.Form):
+    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all())
+    difficulty_level = forms.ModelChoiceField(queryset=DifficultyLevel.objects.all())

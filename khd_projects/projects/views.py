@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from models import UserProfile, User, Category, Project
-from forms import ProjectForm, UserForm, UserProfileForm, CheckboxesForm, RadioboxForm, ProjectEditForm
+from models import UserProfile, User, Category, Project, SubCategory, DifficultyLevel
+from forms import ProjectForm, UserForm, UserProfileForm, CheckboxesForm, RadioboxForm, ProjectEditForm, CategoryFilterForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -34,9 +34,38 @@ def category_page(request, category):
 
     category = Category.objects.filter(category=category)
 
-    projects_list = Project.objects.filter(category=category).order_by('-pub_date')
+    projects = Project.objects.filter(category=category).order_by('-pub_date')
 
-    paginator = Paginator(projects_list, 15) # Show 25 contacts per page
+    if request.method == "POST":
+        form = CategoryFilterForm(request.POST)
+        if form:
+            if request.POST['sub_category'] and request.POST['difficulty_level']:
+                sub_category_id = request.POST['sub_category']
+                difficulty_level_id = request.POST['difficulty_level']
+                sub_category = SubCategory.objects.filter(pk=sub_category_id)
+                difficulty_level = SubCategory.objects.filter(pk=difficulty_level_id)
+                projects = Project.objects.filter(category=category).filter(sub_category=sub_category).filter(difficulty_level=difficulty_level)
+
+            else:
+                if request.POST['sub_category']:
+                    sub_category_id = request.POST['sub_category']
+                    sub_category = SubCategory.objects.filter(pk=sub_category_id)
+                    projects = Project.objects.filter(category=category).filter(sub_category=sub_category)
+
+                elif request.POST['difficulty_level']:
+                    difficulty_level_id = request.POST['difficulty_level']
+                    difficulty_level = DifficultyLevel.objects.filter(pk=difficulty_level_id)
+                    projects = Project.objects.filter(category=category).filter(difficulty_level=difficulty_level)
+
+            form = CategoryFilterForm()
+            context = { 'category' : category[0], 'projects' : projects , 'form' : form}
+            return render(request, "category_page.html", context)
+
+
+
+    form = CategoryFilterForm()
+
+    paginator = Paginator(projects, 25) # Show 25 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -48,7 +77,7 @@ def category_page(request, category):
         # If page is out of range (e.g. 9999), deliver last page of results.
         projects = paginator.page(paginator.num_pages)
 
-    context = {'projects' : projects, 'category' : category[0]}
+    context = {'projects' : projects, 'category' : category[0], 'form' : form}
 
     return render(request, 'category_page.html', context)
 

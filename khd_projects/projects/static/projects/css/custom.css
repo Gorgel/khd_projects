@@ -26,6 +26,10 @@ iframe {
     background-color: #24282B;
 }
 
+.left_float {
+     float: left;
+}
+
 .container.border {
     background: white;
     padding-left: 40px;

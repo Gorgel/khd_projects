@@ -2,13 +2,37 @@
 
 {% block content %}
 
+<div class="container">
+    <h3>Select filter options:</h3>
+    <form method="POST" action="" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <div class="container">
+        {% for field in form %}
+    <div class="container left_float">
+
+        <h3><label class="label label-primary">{{ field.label }}</label>
+        </h3><h4>{{ field }}</h4>
+    </div>
+        {% endfor %}
+    </div>
+
+        <div class="container">
+        <button class="btn btn-primary btn-lg btn-block" id="SubmittButton" type="submit" name="submit_button">Filter</button>
+        </div>
+    </form>
+        {{ test }}
+        {{ sub_category }}
+    </div>
+
 <div class="panel_heading">
               <h3 class="panel-title"><b>{{ category.category }} projects</b></h3>
           </div>
           <div class="panel panel-default">
 
             <div class="panel-body">
-    
+                        {% if projects %}
                         {% for project in projects %}
                         <div class="project_item">
                         <h3>
@@ -17,13 +41,21 @@
                         <div class="project_atributes">
                         <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
                         <b>Category:  {{ project.category }}</b>
+                        <b>Sub category:  {{ project.sub_category }}</b>
+                        <b>Level:  {{ project.difficulty_level }}</b>
                         <b>Publication date: {{ project.pub_date }}</b>
                         <b>Likes = {{ project.likes }}</b>
-                        <b>Views = {{ project.views }}</b>
                         </div>
                         <p>{{ project.description }}</p>
                         </div>
                         {% endfor %}
+
+                        {% else %}
+                        <a href="" class="list-group-item">
+                        <h4 class="list-group-item-heading">No match found!</h4>
+                        <p class="list-group-item-text">Try another combination!</p>
+                        </a>
+                        {% endif %}
                 
                 </div>
               
