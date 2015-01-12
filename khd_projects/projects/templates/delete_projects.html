@@ -20,14 +20,16 @@
                             <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
                         </h3>
                         <div class="project_atributes">
-                        <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
-                        <b>Category:  {{ project.category }}</b>
-                        <b>Publication date: {{ project.pub_date }}</b>
-                        <b>Likes = {{ project.likes }}</b>
-                        <b>Views = {{ project.views }}</b>
+                        Author: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        Category:  <b>{{ project.category }}</b>
+                        Sub-category:  <b>{{ project.sub_category }}</b>
+                        Level:  <b>{{ project.difficulty_level }}</b>
+                        Publication date: <b>{{ project.pub_date }}</b>
+                        Likes = <b>{{ project.likes }}</b>
                         </div>
                         <p>{{ project.description }}</p>
-                        <p><label for="id_choices"> <input id="id_choices" name="choices" type="checkbox" value="{{ project.id }}" /> <-- select to delete</label></p>
+                        <h5><p><label for="id_choices"> <input id="id_choices" name="choices" type="checkbox" value="{{ project.id }}" />
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> - Select and push button to delete</label></p></h5>
                         </div>
 
                         {% endfor %}

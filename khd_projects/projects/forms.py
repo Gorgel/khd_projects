@@ -10,6 +10,7 @@ class UserForm(forms.ModelForm):
 
 class UserProfileForm(forms.ModelForm):
     description = forms.CharField(max_length=500, required=False, widget=forms.Textarea())
+    picture = forms.ImageField(required=False)
 
     class Meta:
         model = UserProfile

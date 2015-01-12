@@ -6,6 +6,7 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
+          <img class="logo" src="\static\projects\images\khdlogo.png">
         <h2>Welcome to Kid Hack Day innovation club project page!</h2>
         <p>Share your awsome projects with the KHD community</p>
         <p><a href="#" class="btn btn-primary btn-lg" role="button">Get started &raquo;</a></p>
@@ -24,12 +25,12 @@
                             <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
                         </h3>
                         <div class="project_atributes">
-                        <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
-                        <b>Category:  {{ project.category }}</b>
-                        <b>Sub category:  {{ project.sub_category }}</b>
-                        <b>Level:  {{ project.difficulty_level }}</b>
-                        <b>Publication date: {{ project.pub_date }}</b>
-                        <b>Likes = {{ project.likes }}</b>
+                        Author: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        Category:  <b>{{ project.category }}</b>
+                        Sub-category:  <b>{{ project.sub_category }}</b>
+                        Level:  <b>{{ project.difficulty_level }}</b>
+                        Publication date: <b>{{ project.pub_date }}</b>
+                        Likes = <b>{{ project.likes }}</b>
                         </div>
                         <p>{{ project.description }}</p>
                         </div>

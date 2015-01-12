@@ -30,6 +30,15 @@ iframe {
      float: left;
 }
 
+.logo {
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+a {
+color: #D91B5B;
+}
+
 .container.border {
     background: white;
     padding-left: 40px;

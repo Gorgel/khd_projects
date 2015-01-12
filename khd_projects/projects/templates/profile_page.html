@@ -8,11 +8,10 @@
                       <h3 class="panel-title"><b>Profile picture</b></h3>
                     </div>
                     <div class="panel-body">
-                        {% if profile_user_profile.picture %}
+                        {% if user_profile.picture %}
                         <img class="profile-picture" src="{{ user_profile.picture.url }}">
                         {% else %}
-                        <p>{{ user.username }} has not uploaded a profile picture</p>
-                            
+                        <p>{{ profile_user.username }} has not uploaded a profile picture</p>
                         {% endif %}
 
                     </div>
@@ -22,10 +21,10 @@
                 <div class="col-sm-8">
                   <div class="panel panel-default">
                     <div class="panel_heading">
-                      <h3 class="panel-title"><b>Information</b></h3>
+                      <h3 class="panel-title"><b>Information</b> </h3>
                     </div>
                     <div class="panel-body">
-                        
+
                         <div class="project_item">
                             <b>Username:</b> {{ user.username }}
                         </div>
@@ -45,9 +44,17 @@
                         <div class="project_item">
                             <b>Description:</b> {{ user_profile.description }}
                         </div>
+
+                        <div class="project_item">
+                            <h4><a href="{% url 'projects:edit_profile' %}"><b>
+                                <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Edit profile</b></a></h4>
+                        </div>
                     </div>
+
                   </div>
                 </div>
+
+
 
                 <div class="col-sm-12">
                           <div class="panel panel-default">
@@ -65,11 +72,12 @@
                             <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
                         </h3>
                         <div class="project_atributes">
-                        <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
-                        <b>Category:  {{ project.category }}</b>
-                        <b>Publication date: {{ project.pub_date }}</b>
-                        <b>Likes = {{ project.likes }}</b>
-                        <b>Views = {{ project.views }}</b>
+                        Author: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        Category:  <b>{{ project.category }}</b>
+                        Sub-category:  <b>{{ project.sub_category }}</b>
+                        Level:  <b>{{ project.difficulty_level }}</b>
+                        Publication date: <b>{{ project.pub_date }}</b>
+                        Likes = <b>{{ project.likes }}</b>
                         </div>
                         <p>{{ project.description }}</p>
                         </div>

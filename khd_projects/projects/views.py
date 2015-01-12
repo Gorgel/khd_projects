@@ -26,9 +26,48 @@ def profile_page(request, username):
     user_profile = UserProfile.objects.get(user=user)
     user_projects = Project.objects.filter(user=user)
 
-    context = {'user' : user, 'user_profile' : user_profile, 'user_projects' : user_projects}
+    form = UserProfileForm()
+
+    context = {'user' : user, 'user_profile' : user_profile, 'user_projects' : user_projects, 'form' : form}
 
     return render(request, 'profile_page.html', context)
+
+@login_required
+def edit_profile(request):
+
+    user = User.objects.get(username=request.user)
+
+    if request.method == "POST":
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            model_instance = form.save(commit=False)
+            model_instance.user = user
+            model_instance.id = user.id
+            if request.FILES:
+                model_instance.picture = request.FILES['picture']
+            else:
+                user_profile = UserProfile.objects.filter(user=user)[0]
+                model_instance.picture = user_profile.picture
+
+            if request.POST['description']:
+                model_instance.description = request.POST['description']
+            else:
+                user_profile = UserProfile.objects.filter(user=user)[0]
+                model_instance.description = user_profile.description
+
+            model_instance.save()
+
+            message = 'Your edit was successful!'
+
+            context = {'message' : message, 'model_instance' : model_instance}
+            return render(request, "thanks.html", context)
+    else:
+        form = UserProfileForm()
+
+    context = { 'form' : form}
+
+    return render(request, "edit_profile.html", context)
 
 def category_page(request, category):
 
