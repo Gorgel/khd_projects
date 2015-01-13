@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from models import UserProfile, User, Category, Project, SubCategory, DifficultyLevel
-from forms import ProjectForm, UserForm, UserProfileForm, CheckboxesForm, RadioboxForm, ProjectEditForm, CategoryFilterForm
+from forms import ProjectForm, UserProfileForm, CheckboxesForm, RadioboxForm, ProjectEditForm, CategoryFilterForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -122,6 +122,10 @@ def category_page(request, category):
 
 def project_viewer(request, id, category, slug):
 
+    if request.method == 'POST':
+        project_id = request.POST['like_button']
+        Project.objects.filter(id=int(project_id)).update(likes=F('likes')+1)
+
     project = Project.objects.get(pk=id)
 
     context = {'project' : project}
@@ -223,22 +227,6 @@ def edit_projects_page(request):
     form = RadioboxForm()
     context = {'user' : user, 'user_projects' : user_projects, 'form' : form, 'request' : request}
     return render(request, 'edit_projects_page.html', context)
-
-def like_project(request):
-
-    if request.method == 'GET':
-        project_id = request.GET['project_id']
-
-    if project_id:
-        Project.objects.filter(id=int(project_id)).update(likes=F('likes')+1)
-    else:
-        test='hej'
-
-    project = Project.objects.filter(id=int(project_id))
-
-    likes = 'Likes: ' + str(project[0].likes)
-
-    return HttpResponse(likes)
 
 def user_login(request):
 

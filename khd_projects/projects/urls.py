@@ -15,6 +15,5 @@ urlpatterns = patterns('',
     url(r'^category_page/(?P<category>\w+)', views.category_page, name ='category_page'),
     url(r'^user_login', views.user_login, name='user_login'),
     url(r'^user_logout', views.user_logout, name='user_logout'),
-    url(r'^like_project', views.like_project, name='like_project'),
     url(r'^project_viewer/(?P<category>\w+)/(?P<id>[\d-]+)/(?P<slug>[\w-]+)', views.project_viewer, name ='project_viewer')
 )
