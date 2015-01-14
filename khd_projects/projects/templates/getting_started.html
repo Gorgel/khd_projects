@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+
+      <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+    <div>
+        <h1>GETTING STARTED</h1>
+        <ol>
+            <li><a href="#essentials"> Essentials</a></li>
+            <li><a href="#add"> Add project</a></li>
+            <li><a href="#tips"> Tips</a></li>
+        </ol>
+
+        <h2><a name="essentials">1. Essentials:</a></h2>
+        <p>First order of business is to get a user account. This can be granted from any of the webmasters.
+            Send an email asking for a user account to: </p>
+        <ul>
+            <li>simon@kidshackday.com</li>
+            <li>...</li>
+        </ul>
+        <p>Once you have received your user account you can login to the KHD project page and start adding
+            instructions for your projects.</p>
+        <h2><a name="add">2. Adding a project:</a></h2>
+        <p>To add a project first login:</p>
+        <img alt="" src="/static/projects/images/getting_started/login.png">
+        <p></p>
+        <p>Then you should see something like this:</p>
+        <img alt="" src="/static/projects/images/getting_started/add_project.png">
+        <p></p>
+        <p>Select "add project" and you should be taken to the add project page:</p>
+        <img alt="" src="/static/projects/images/getting_started/project_details.png">
+        <p></p>
+        <p>In this page fill in the fields and then push the "add project"-button.</p>
+        <h2><a name="tips">3. Tips:</a></h2>
+        <ul>
+
+        <li><p>I would highly recommend a live markdown editor when you write you project instructions.
+            When writing in such an editor you can see your changes in real time, which helps to
+        get an idea of how the article will look. Once you are finished with your article copy the code
+        and then past it in the article box. An editor that can be used directly in your browser
+            can be found <a href="http://jrmoran.com/playground/markdown-live-editor/">HERE</a>.</p></li>
+
+        <li><p>You can find the documentation for Markdown <a href="http://daringfireball.net/projects/markdown/">HERE</a></p></li>
+
+        <li><p>A interactive Markdown tutorial can be found <a href="http://daringfireball.net/projects/markdown/">HERE</a></p></li>
+
+        <li>When you embed things in your article you can also use HTML.</li>
+
+        </ul>
+    </div>
+
+{% endblock %}

@@ -20,6 +20,11 @@ def index(request):
     context = {'new_projects' : new_projects, 'likes_projects' : likes_projects, 'categories' : categories}
     return render(request, 'index.html', context)
 
+def getting_started(request):
+
+    context = {}
+    return render(request, 'getting_started.html', context)
+
 def profile_page(request, username):
 
     user = User.objects.get(username=username)
