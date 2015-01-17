@@ -10,7 +10,7 @@
 
     <div class="container">
         {% for field in form %}
-        <h3><label class="label label-primary">Project {{ field.label }}
+        <h3><label class="label label-primary">{{ field.label }}
             {% if field.field.required %}
             - Required
             {% else %}

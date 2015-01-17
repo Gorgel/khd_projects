@@ -53,5 +53,13 @@ class Project(models.Model):
     def __unicode__(self):
         return self.title
 
+class FAQ(models.Model):
+    question = models.CharField(max_length=200)
+    answer = models.TextField(max_length=1000)
+
+    def __unicode__(self):
+        return self.question
+
+
 
 

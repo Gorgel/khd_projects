@@ -70,7 +70,8 @@ color: #D91B5B;
 }
 
 .navbar {
-    height: 50px;
+    z-index: 100;
+    height: 51px;
     margin: 0px;
     border: none;
     border-radius: 0px;
@@ -170,4 +171,12 @@ color: #D91B5B;
     border-radius: 0px;
     -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.075);
     box-shadow: 0 0px 0px rgba(0,0,0,.075);
+}
+
+#id_description {
+    max-width: 100%;
+}
+
+#id_article {
+    max-width: 100%;
 }

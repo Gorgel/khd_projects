@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from models import UserProfile, User, Category, Project, SubCategory, DifficultyLevel
+from models import UserProfile, User, Category, Project, SubCategory, DifficultyLevel, FAQ
 from forms import ProjectForm, UserProfileForm, CheckboxesForm, RadioboxForm, ProjectEditForm, CategoryFilterForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
@@ -36,6 +36,13 @@ def profile_page(request, username):
     context = {'user' : user, 'user_profile' : user_profile, 'user_projects' : user_projects, 'form' : form}
 
     return render(request, 'profile_page.html', context)
+
+def faq(request):
+
+    faqs = FAQ.objects.all()
+
+    context = { 'faqs' : faqs}
+    return render(request, 'faq.html', context)
 
 @login_required
 def edit_profile(request):
