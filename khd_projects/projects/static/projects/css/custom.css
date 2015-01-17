@@ -31,7 +31,8 @@ iframe {
 }
 
 .logo {
-    height: 140px;
+    max-height: 160px;
+    min-width: auto;
     margin-bottom: 15px;
 }
 
