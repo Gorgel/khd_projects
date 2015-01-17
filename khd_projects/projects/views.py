@@ -27,13 +27,13 @@ def getting_started(request):
 
 def profile_page(request, username):
 
-    user = User.objects.get(username=username)
-    user_profile = UserProfile.objects.get(user=user)
-    user_projects = Project.objects.filter(user=user)
+    profile_user = User.objects.get(username=username)
+    user_profile = UserProfile.objects.get(user=profile_user)
+    user_projects = Project.objects.filter(user=profile_user)
 
     form = UserProfileForm()
 
-    context = {'user' : user, 'user_profile' : user_profile, 'user_projects' : user_projects, 'form' : form}
+    context = { 'profile_user' : profile_user, 'user_profile' : user_profile, 'user_projects' : user_projects, 'form' : form}
 
     return render(request, 'profile_page.html', context)
 
