@@ -212,7 +212,7 @@ def edit_project(request, id):
 
                 message = 'Your project was edited successfully!'
 
-                context = context = {'message' : message}
+                context = {'message' : message}
                 return render(request, "thanks.html", context)
 
             else:

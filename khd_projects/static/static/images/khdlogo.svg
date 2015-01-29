@@ -28,18 +28,27 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="435.66482"
-     inkscape:cy="681.3504"
+     inkscape:cx="378.26053"
+     inkscape:cy="705.25621"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1309"
+     inkscape:window-width="1303"
      inkscape:window-height="744"
      inkscape:window-x="57"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      showguides="true"
-     inkscape:guide-bbox="true" />
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="1,0"
+       position="106.42857,607.14286"
+       id="guide3766" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="629.28571,647.85714"
+       id="guide3768" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -57,7 +66,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#3c3c3c;fill-opacity:1;stroke:#000000;stroke-width:2.41354346;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#3c3c3c;fill-opacity:1;stroke:none;stroke-width:2.41354346000000008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3070"
        width="522.96106"
        height="175.53937"
@@ -72,8 +81,8 @@
        id="path3858"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:#00adf1;fill-opacity:1;stroke:#000000;stroke-width:2.42841578;stroke-opacity:1"
-       d="m 106.8957,190.41061 170.34376,-0.0145 -82.88634,88.55776 83.31732,86.56393 -170.77465,-0.18488 z"
+       style="fill:#00adf1;fill-opacity:1;stroke:none"
+       d="m 106.8957,190.0535 170.34376,-0.0145 -82.88634,88.73836 83.31732,86.99301 -170.77465,-0.18524 z"
        id="path3860"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccc"
@@ -81,8 +90,8 @@
        inkscape:export-xdpi="200"
        inkscape:export-ydpi="200" />
     <path
-       style="fill:#d91b5b;fill-opacity:1;stroke:#000000;stroke-width:2.4312849px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 281.12794,190.12823 70.67509,0.1325 0.43094,30.61761 31.02808,0 0.43091,-30.79925 69.81324,0.049 0.43094,175.26249 -72.39885,-0.17208 0,-26.24367 -30.16617,0 0.43091,26.24367 -70.67509,0.17208 z"
+       style="fill:#d91b5b;fill-opacity:1;stroke:none"
+       d="m 281.12794,190.12833 70.67509,0.13277 0.43094,30.67998 31.02808,0 0.43091,-30.86199 69.81324,0.0491 0.43094,175.61953 -72.39885,-0.17243 0,-26.29713 -30.16617,0 0.43091,26.29713 -70.67509,0.17243 z"
        id="path3884"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccccccc"
@@ -91,41 +100,49 @@
        inkscape:export-ydpi="200" />
     <path
        sodipodi:type="arc"
-       style="fill:#f5ed30;fill-opacity:1;stroke:#000000;stroke-width:0.91070133;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#f5ed30;fill-opacity:1;stroke:none"
        id="path3888"
        sodipodi:cx="377.41824"
        sodipodi:cy="407.25351"
        sodipodi:rx="28.789347"
        sodipodi:ry="28.789347"
        d="m 406.20759,407.25351 a 28.789347,28.789347 0 1 1 -57.57869,0 28.789347,28.789347 0 1 1 57.57869,0 z"
-       transform="matrix(2.3943786,0,0,3.0516021,-344.23317,-964.76556)"
+       transform="matrix(2.4129867,0,0,3.0578048,-350.72048,-967.4702)"
        inkscape:export-filename="/home/gorgel/Dropbox/simon/kidshackday/khd_projects/khd_projects/static/static/images/khdlogo.png"
        inkscape:export-xdpi="200"
        inkscape:export-ydpi="200" />
     <rect
        style="fill:#f5ed30;fill-opacity:1;stroke:none"
        id="rect3886"
-       width="100.28124"
-       height="173.09625"
-       x="455.31876"
-       y="191.43571"
+       width="101.70982"
+       height="175.59625"
+       x="453.8902"
+       y="190.00714"
        inkscape:export-filename="/home/gorgel/Dropbox/simon/kidshackday/khd_projects/khd_projects/static/static/images/khdlogo.png"
        inkscape:export-xdpi="200"
        inkscape:export-ydpi="200" />
     <text
        xml:space="preserve"
-       style="font-size:50.80300903px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Mukti Narrow;-inkscape-font-specification:Mukti Narrow"
-       x="86.182526"
-       y="497.51126"
+       style="font-size:34.88733292px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Mukti Narrow;-inkscape-font-specification:Mukti Narrow"
+       x="286.82993"
+       y="451.5788"
        id="text3906"
        sodipodi:linespacing="125%"
-       transform="scale(1.1758502,0.85044849)"
+       transform="scale(1.1234476,0.89011718)"
        inkscape:export-xdpi="200"
        inkscape:export-ydpi="200"
        inkscape:export-filename="/home/gorgel/Dropbox/simon/kidshackday/khd_projects/khd_projects/static/static/images/khdlogo.png"><tspan
          sodipodi:role="line"
          id="tspan3908"
-         x="86.182526"
-         y="497.51126">KIDS_HACK_DAY_</tspan></text>
+         x="286.82993"
+         y="451.5788">KIDS-HACK-DAY</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.03910112;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 107.1543,392.8021 207.11999,0.69141"
+       id="path3770"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/gorgel/Dropbox/simon/kidshackday/khd_projects/khd_projects/static/static/images/khdlogo.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200" />
   </g>
 </svg>

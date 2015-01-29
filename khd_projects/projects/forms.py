@@ -17,7 +17,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ('picture', 'description')
 
 class ProjectForm(forms.ModelForm):
-    article = forms.CharField(max_length=6000, required=False, widget=forms.Textarea())
+    article = forms.CharField(max_length=60000, required=False, widget=forms.Textarea())
     title = forms.CharField(max_length=120, required=True)
     description = forms.CharField(max_length=300, required=False, widget=forms.Textarea())
 
@@ -26,7 +26,7 @@ class ProjectForm(forms.ModelForm):
         fields = ('category', 'sub_category', 'difficulty_level', 'title', 'description', 'article',  )
 
 class ProjectEditForm(forms.ModelForm):
-    article = forms.CharField(max_length=6000, required=False, widget=forms.Textarea())
+    article = forms.CharField(max_length=60000, required=False, widget=forms.Textarea())
     title = forms.CharField(max_length=120, required=False)
     description = forms.CharField(max_length=300, required=False, widget=forms.Textarea())
 

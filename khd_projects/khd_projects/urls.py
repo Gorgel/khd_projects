@@ -11,6 +11,7 @@ urlpatterns = patterns('',
 
     (r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', include('projects.urls', namespace="index")),
     url(r'^projects/', include('projects.urls', namespace="projects"))
 )
 

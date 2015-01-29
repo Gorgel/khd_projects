@@ -121,6 +121,10 @@ color: #D91B5B;
 	float: left;
 }
 
+.panel-title {
+
+}
+
 
 .project_item {
     overflow: auto;
