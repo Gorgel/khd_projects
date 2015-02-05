@@ -54,18 +54,17 @@ def edit_profile(request):
         if form.is_valid():
 
             model_instance = form.save(commit=False)
-            model_instance.user = user
-            model_instance.id = user.id
+            user_profile = UserProfile.objects.filter(user=user)[0]
+            model_instance.id = user_profile.id
+            model_instance.user_id = user_profile.user_id
             if request.FILES:
                 model_instance.picture = request.FILES['picture']
             else:
-                user_profile = UserProfile.objects.filter(user=user)[0]
                 model_instance.picture = user_profile.picture
 
             if request.POST['description']:
                 model_instance.description = request.POST['description']
             else:
-                user_profile = UserProfile.objects.filter(user=user)[0]
                 model_instance.description = user_profile.description
 
             model_instance.save()

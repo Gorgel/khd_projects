@@ -19,6 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# generate random from:
+# SECRET_KEY = ''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)') for i in range(50)])
 SECRET_KEY = 'mg4y_z$!eik+^(j+3tqo$7j+qai1v5-chrn10jh6y@a4v(%u5@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -26,7 +28,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+if DEBUG == False:
+    ALLOWED_HOSTS = ['khdprojects.pythonanywhere.com']
 
 
 # Application definition
