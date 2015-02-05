@@ -5,7 +5,7 @@
 <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          inlineMath: [ ['$','$'], ["\\(","\\)"], ],
           processEscapes: true
         }
       });
@@ -23,11 +23,6 @@
                             Sub-category:  <b>{{ project.sub_category }}</b>
                             Level:  <b>{{ project.difficulty_level }}</b>
                         Publication date: <b>{{ project.pub_date }}</b>
-                        <b>Likes:</b> {{ project.likes }}
-                            <form name="inform" action="" method="POST">
-                                {% csrf_token %}
-                                <button class="btn btn-lg btn-primary btn-block" type="submit" value="{{ project.id }}" name="like_button">Like</button>
-                            </form>
                         </div>
                         </div>
                               <h1>{{ project.title }}</h1>
@@ -35,7 +30,7 @@
     <div>
       {% load markdown_filter %}
 
-      {{ project.article|custom_markdown|safe}}
+      {{ project.article|custom_markdown|safe }}
 
     </div>
 

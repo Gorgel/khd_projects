@@ -30,34 +30,6 @@
                         Sub-category:  <b>{{ project.sub_category }}</b>
                         Level:  <b>{{ project.difficulty_level }}</b>
                         Publication date: <b>{{ project.pub_date }}</b>
-                        Likes = <b>{{ project.likes }}</b>
-                        </div>
-                        <p>{{ project.description }}</p>
-                        </div>
-                        {% endfor %}
-                
-                </div>
-            </div>
-
-            <div class="panel_heading">
-              <h3 class="panel-title"><b>Top Liked projects</b></h3>
-          </div>
-          <div class="panel panel-default">
-
-            <div class="panel-body">
-    
-                        {% for project in likes_projects %}
-                        <div class="project_item">
-                        <h3>
-                            <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
-                        </h3>
-                        <div class="project_atributes">
-                        <b>Author: <a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
-                        <b>Category:  {{ project.category }}</b>
-                        <b>Sub category:  {{ project.sub_category }}</b>
-                        <b>Level:  {{ project.difficulty_level }}</b>
-                        <b>Publication date: {{ project.pub_date }}</b>
-                        <b>Likes = {{ project.likes }}</b>
                         </div>
                         <p>{{ project.description }}</p>
                         </div>
