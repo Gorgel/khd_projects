@@ -14,11 +14,20 @@
                             {% if faqs %}
                               {% for faq in faqs %}
                         <div class="project_item">
+
                         <h3>
-                           Q: {{ faq.question }}
+
+                           <a data-toggle="collapse" href="#question{{ faq.id }}"
+                               aria-expanded="false" aria-controls="question{{ faq.id }}">
+                                {{ faq.question }}</a>
                         </h3>
+
                             {% load markdown_filter %}
-                        <p>{{ faq.answer|custom_markdown }} </p>
+
+                            <div class="collapse" id="question{{ faq.id }}">
+                                {{ faq.answer|custom_markdown }}
+                            </div>
+
                         </div>
                         {% endfor %}
                       {% else %}
