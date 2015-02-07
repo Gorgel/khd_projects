@@ -17,7 +17,8 @@
                         <h3>
                            Q: {{ faq.question }}
                         </h3>
-                        <p>{{ faq.answer|safe }} </p>
+                            {% load markdown_filter %}
+                        <p>{{ faq.answer|custom_markdown }} </p>
                         </div>
                         {% endfor %}
                       {% else %}
