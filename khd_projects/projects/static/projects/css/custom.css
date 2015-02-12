@@ -195,6 +195,15 @@ color: #D91B5B;
     color: #fff9e3;
 }
 
+.spoiler pre{
+    border: none;
+    background-color: #fff9e3;
+    -webkit-transition:color .5s ease-in;
+    -moz-transition:color .5s ease-in;
+    transition:color .5s ease-in;
+    color: #fff9e3;
+}
+
 .spoiler:hover a{
     text-decoration:underline
 }
@@ -206,8 +215,10 @@ color: #D91B5B;
 .spoiler a{
     color:#fff9e3
 }
+
 .spoiler code{
-    color:#fff9e3;background-color:#fff9e3;
+    color:#fff9e3;
+    background-color:#fff9e3;
     -webkit-transition:color .5s ease-in;
     -moz-transition:color .5s ease-in;
     transition:color .5s ease-in
