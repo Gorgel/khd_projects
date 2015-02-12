@@ -185,3 +185,51 @@ color: #D91B5B;
 #id_article {
     max-width: 100%;
 }
+
+.spoiler{
+    border-left: 2px solid #ffeb8e;
+    background-color: #fff9e3;
+    -webkit-transition:color .5s ease-in;
+    -moz-transition:color .5s ease-in;
+    transition:color .5s ease-in;
+    color: #fff9e3;
+}
+
+.spoiler:hover a{
+    text-decoration:underline
+}
+
+.spoiler:hover img{
+    visibility:visible
+}
+
+.spoiler a{
+    color:#fff9e3
+}
+.spoiler code{
+    color:#fff9e3;background-color:#fff9e3;
+    -webkit-transition:color .5s ease-in;
+    -moz-transition:color .5s ease-in;
+    transition:color .5s ease-in
+}
+
+.spoiler:hover{
+    color:#333;
+    -webkit-transition:color .5s ease-in;
+    -moz-transition:color .5s ease-in;
+    transition:color .5s ease-in
+}
+.spoiler:hover a{
+    color:#4e82c2
+}
+
+.spoiler:hover code{
+    color:#222;
+    -webkit-transition:color .5s ease-in;
+    -moz-transition:color .5s ease-in;
+    transition:color .5s ease-in
+}
+
+.spoiler img{
+    visibility:hidden
+}

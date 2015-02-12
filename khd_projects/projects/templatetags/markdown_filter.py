@@ -16,7 +16,7 @@ register = template.Library()
 def custom_markdown(value):
 
     # thanks to https://github.com/constantAmateur/markdown2Mathjax
-    extras = ["fenced-code-blocks"]
+    extras = ["fenced-code-blocks", "spoiler"]
     tmp = sanitizeInput(value)
     markedDownText = markdown2.markdown(force_unicode(tmp[0]), extras = extras)
     finalOutput = reconstructMath(markedDownText,tmp[1])
