@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>KHD - Projects</title>
+
+    {% load staticfiles %}
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'projects/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap theme -->
+    <!-- <link href="{% static 'projects/css/bootstrap-theme.min.css' %}" rel="stylesheet"> -->
+      <link href="{% static 'projects/css/sticky-footer.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'projects/css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'projects/css/code.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google analytics script -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-52256086-3', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+
+    <title>Blockly Demo: Arduino</title>
+
+  {% load staticfiles %}
+  <!--script type="text/javascript" src="../blockly_compressed.js"></script-->
+  <script type="text/javascript" src="{% static 'blockly/js/Blob.js' %}"></script>
+  <script type="text/javascript" src="{% static 'blockly/js/spin.js' %}"></script>
+  <script type="text/javascript" src="{% static 'blockly/js/FileSaver.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'blockly/js/blockly_helper.js' %}"></script>
+  <script>
+  // Whitelist of blocks to keep.
+  /*var newLanguage = {}
+  var keepers = ['controls_loop', 'controls_delay', 'control_map',
+      //'setup_pinmode', 'output_digital_write', 'output_analog_write',
+      //'controls_if', 'controls_if_if', 'controls_if_elseif',
+      //'controls_if_else', 'controls_whileUntil', 'controls_for',
+      //'controls_flow_statements',
+      //'math_number','math_arithmetic',//'math_modulo',
+      //'logic_compare', 'logic_operation', 'logic_negate', 'logic_boolean',
+      //'variables_get','variables_set',
+      //'procedures_defnoreturn', 'procedures_defreturn', 'procedures_callnoreturn', 'procedures_callreturn'
+      ];
+  for (var x = 0; x < keepers.length; x++) {
+    newLanguage[keepers[x]] = Blockly.Language[keepers[x]];
+  }
+  // Fold control category into logic category.
+  for (var name in newLanguage) {
+    if (newLanguage[name].category == 'Math') {
+      newLanguage[name].category = 'Logic';
+    }
+  }
+  Blockly.Language = newLanguage;*/
+
+/**
+ * List of tab names.
+ * @private
+ */
+var TABS_ = ['blocks', 'arduino', 'xml'];
+
+var selected = 'blocks';
+
+/**
+ * Switch the visible pane when a tab is clicked.
+ * @param {string} id ID of tab clicked.
+ */
+function tabClick(id) {
+  // If the XML tab was open, save and render the content.
+  if (document.getElementById('tab_xml').className == 'tabon') {
+    var xmlTextarea = document.getElementById('textarea_xml');
+    var xmlText = xmlTextarea.value;
+    var xmlDom = null;
+    try {
+      xmlDom = Blockly.Xml.textToDom(xmlText);
+    } catch (e) {
+      var q =
+          window.confirm('Error parsing XML:\n' + e + '\n\nAbandon changes?');
+      if (!q) {
+        // Leave the user on the XML tab.
+        return;
+      }
+    }
+    if (xmlDom) {
+      Blockly.mainWorkspace.clear();
+      Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
+    }
+  }
+
+  // Deselect all tabs and hide all panes.
+  for (var x in TABS_) {
+    document.getElementById('tab_' + TABS_[x]).className = 'taboff';
+    document.getElementById('content_' + TABS_[x]).style.display = 'none';
+  }
+
+  // Select the active tab.
+  selected = id.replace('tab_', '');
+  document.getElementById(id).className = 'tabon';
+  // Show the selected pane.
+  var content = document.getElementById('content_' + selected);
+  content.style.display = 'block';
+  renderContent();
+}
+
+/**
+ * Populate the currently selected pane with content generated from the blocks.
+ */
+function renderContent() {
+  var content = document.getElementById('content_' + selected);
+  // Initialize the pane.
+  if (content.id == 'content_blocks') {
+    // If the workspace was changed by the XML tab, Firefox will have performed
+    // an incomplete rendering due to Blockly being invisible.  Rerender.
+    Blockly.mainWorkspace.render();
+  } else if (content.id == 'content_xml') {
+    var xmlTextarea = document.getElementById('textarea_xml');
+    var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+    var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+    xmlTextarea.value = xmlText;
+    xmlTextarea.focus();
+  /*} else if (content.id == 'content_javascript') {
+    content.innerHTML = Blockly.Generator.workspaceToCode('JavaScript');
+  } else if (content.id == 'content_dart') {
+    content.innerHTML = Blockly.Generator.workspaceToCode('Dart');
+  } else if (content.id == 'content_python') {
+    content.innerHTML = Blockly.Generator.workspaceToCode('Python');*/
+  } else if (content.id == 'content_arduino') {
+    //content.innerHTML = Blockly.Generator.workspaceToCode('Arduino');
+    var arduinoTextarea = document.getElementById('textarea_arduino');
+    arduinoTextarea.value = Blockly.Generator.workspaceToCode('Arduino');
+    arduinoTextarea.focus();
+  }
+}
+
+/**
+ * Initialize Blockly.  Called on page load.
+ * @param {!Blockly} blockly Instance of Blockly from iframe.
+ */
+function init(blockly) {
+  //window.onbeforeunload = function() {
+  //  return 'Leaving this page will result in the loss of your work.';
+  //};
+
+  window.Blockly = blockly;
+
+  // var blockly_frame = document.getElementById("content_blocks");
+  // Blockly.inject(blockly_frame, {path: '../../'});
+
+  // Make the 'Blocks' tab line up with the toolbox.
+  if (Blockly.Toolbox) {
+    window.setTimeout(function() {
+        document.getElementById('tab_blocks').style.minWidth =
+            (Blockly.Toolbox.width - 38) + 'px';
+            // Account for the 19 pixel margin and on each side.
+      }, 1);
+  }
+
+  auto_save_and_restore_blocks();
+
+  //load from url parameter (single param)
+  //http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript
+  var dest = unescape(location.search.replace(/^.*\=/, '')).replace(/\+/g, " ");
+  if(dest){
+    load_by_url(dest);
+  }
+}
+  </script>
+  <style>
+    .container {
+    max-width: none;
+    }
+
+    .container.border.menu {
+    border-left: none;
+    border-right: none;
+    }
+
+    .container.border {
+    padding-left: none;
+    padding-right: none;
+    padding-bottom: none;
+    border-left: none;
+    border-right: none;
+    }
+
+    .container.border.foot {
+    border-left: none;
+    border-right: none;
+  }
+
+    .blocklySvg {
+      height: 100%;
+      width: 100%;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+    td {
+      vertical-align: top;
+    }
+
+    /* Tabs */
+    #tabRow>td {
+      border: 1px solid #ccc;
+    }
+    td.tabon {
+      border-bottom-color: #ddd !important;
+      background-color: #ddd;
+      padding: 5px 19px;
+    }
+    td.taboff {
+      cursor: pointer;
+      padding: 5px 19px;
+    }
+    td.taboff:hover {
+      background-color: #eee;
+    }
+    td.tabmin {
+      border-top-style: none !important;
+      border-left-style: none !important;
+      border-right-style: none !important;
+    }
+    td.tabmax {
+      border-top-style: none !important;
+      border-left-style: none !important;
+      border-right-style: none !important;
+      width: 99%;
+      text-align: right;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    td {
+      padding: 0;
+    }
+    pre,
+    #content_xml,
+    #content_arduino {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #ccc;
+      border-top-style: none;
+      overflow: hidden;
+      display: none;
+    }
+    #textarea_xml,
+    #textarea_arduino {
+      width: 100%;
+      height: 100%;
+      border: none;
+      resize: none;
+    }
+    iframe {
+      width: 100%;
+      height: 90%;
+      border: 1px solid #ccc;
+      border-top-style: none;
+    }
+    button {
+      padding: 1px 1em;
+      font-size: 90%;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      background-color: #eee;
+      color: black;
+    }
+    button.launch {
+      border: 1px solid #d43;
+      background-color: #d43;
+      color: white;
+    }
+    button:active {
+      border: 1px solid blue !important;
+    }
+    button:hover {
+      box-shadow: 2px 2px 5px #888;
+    }
+  </style>
+
+  </head>
+
+  <body role="document">
+
+      <div class="container border menu">
+
+      <!-- navbar code -->
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'projects:index' %}">KHD - Projects</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{% url 'blockly:blockly_index' %}">BlocklyDuino</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  {% for category in menu_categories %}
+                <li><a href="{% url 'projects:category_page' category %}">{{ category }}</a></li>
+                  {% endfor %}
+              </ul>
+            </li>
+            <li><a href="{% url 'projects:faq' %}">FAQ</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li><a>Logged in as <b>{{ user.username }}</b></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">My projects<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="{% url 'projects:profile_page' user.username %}">My profile</a></li>
+                  <li><a href="{% url 'projects:add_project' %}">Add projects</a></li>
+                  <li><a href="{% url 'projects:delete_projects' %}">Delete projects</a></li>
+                  <li><a href="{% url 'projects:edit_projects_page' %}">Edit projects</a></li>
+                  <li><a href="{% url 'projects:user_logout' %}">Logout</a></li>
+              </ul>
+            </li>
+
+              {% else %}
+              <li><a href="{% url 'projects:user_login' %}">Login</a></li>
+              </ul>
+
+            {% endif %}
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    </div>
+      <!-- navbar code end-->
+
+      <div class="container border">
+
+      {% block content %}
+      {% endblock %}
+
+      </div>
+
+      <div class="container border foot">
+        <p class="license">This webpage is powered by
+        <a href="{% url 'projects:twitter_license' %}">Twitter Bootstrap</a>
+        and <a href="{% url 'projects:django_license' %}">Django</a>
+        </p>
+      </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'projects/js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'projects/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'projects/js/projects-ajax.js' %}"></script>
+  </body>
+</html>

@@ -35,7 +35,7 @@ if DEBUG == False:
 # Application definition
 
 INSTALLED_APPS = (
-    #'grappelli',
+    'blockly',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -94,7 +94,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder",
                        "django.contrib.staticfiles.finders.AppDirectoriesFinder")
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'media')]
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'projects/templates'), os.path.join(BASE_DIR, 'blockly/templates')]
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'projects.context_processor_functions.get_categories',
