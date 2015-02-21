@@ -189,6 +189,25 @@ function init(blockly) {
     .container {
     max-width: none;
     }
+
+    .container.border.menu {
+    border-left: none;
+    border-right: none;
+    }
+
+    .container.border {
+    padding-left: none;
+    padding-right: none;
+    padding-bottom: none;
+    border-left: none;
+    border-right: none;
+    }
+
+    .container.border.foot {
+    border-left: none;
+    border-right: none;
+  }
+
     .blocklySvg {
       height: 100%;
       width: 100%;
@@ -340,7 +359,6 @@ function init(blockly) {
               </ul>
 
             {% endif %}
-          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
