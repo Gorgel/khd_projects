@@ -60,6 +60,14 @@ class FAQ(models.Model):
     def __unicode__(self):
         return self.question
 
+class InformationArticle(models.Model):
+    title = models.CharField(max_length=120, unique=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    information_article = models.TextField(max_length=60000)
+
+    def __unicode__(self):
+        return self.title
+
 
 
 

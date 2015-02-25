@@ -3,13 +3,16 @@
 {% block content %}
 
 
-
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
           <img class="logo" src="/static/projects/images/khdlogo2.png">
-        <h2>Welcome to <b>Kids Hack Day</b> innovation club project page!</h2>
-        <p>Get involved and share your awesome projects with the KHD community</p>
-        <p><a href="{% url 'projects:getting_started' %}" class="btn btn-primary btn-lg" role="button">Get started &raquo;</a></p>
+        <h2>Welcome to <b>Kids Hack Day</b> innovation club page!</h2>
+
+        <p>We are a bunch of technology nerds that share the passion of trying to make kids interested in technology and inspire
+            them to become creators of technology rather than passive consumers.
+            In pursuit of this goal we started an innovation club for kids between 9 and 14 years old...
+            </p>
+        <p><a href="{% url 'projects:information_article' '1' %}" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
       </div>
             
           <div class="panel_heading">

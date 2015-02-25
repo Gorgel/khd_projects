@@ -1,12 +1,13 @@
 from django.conf.urls import patterns, url
 
-from projects import views
+import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^twitter_license', views.twitter_license, name='twitter_license'),
     url(r'^django_license', views.django_license, name='django_license'),
     url(r'^profile_page/(?P<username>\w+)', views.profile_page, name ='profile_page'),
+    url(r'^information_article/(?P<id>\w+)', views.information_article, name ='information_article'),
     url(r'^getting_started', views.getting_started, name ='getting_started'),
     url(r'^faq', views.faq, name ='faq'),
     url(r'^edit_profile', views.edit_profile, name ='edit_profile'),

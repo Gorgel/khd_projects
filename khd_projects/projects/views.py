@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from models import UserProfile, User, Category, Project, SubCategory, DifficultyLevel, FAQ
+from models import UserProfile, User, Category, Project, SubCategory, DifficultyLevel, FAQ, InformationArticle
 from forms import ProjectForm, UserProfileForm, CheckboxesForm, RadioboxForm, ProjectEditForm, CategoryFilterForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
@@ -24,6 +24,14 @@ def getting_started(request):
 
     context = {}
     return render(request, 'getting_started.html', context)
+
+
+def information_article(request, id):
+
+    article = InformationArticle.objects.get(pk=id)
+    context = {'article' : article}
+
+    return render(request, 'information_article.html', context)
 
 def profile_page(request, username):
 

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div>
+
+        {% load markdown_filter %}
+
+        {% if article %}
+
+        {{ article.information_article|custom_markdown }}
+
+        {% else %}
+        <p>No article found!</p>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
