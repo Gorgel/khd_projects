@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-    <h3>Select filter options:</h3>
+    <h3>Filtereringsval:</h3>
     <form method="POST" action="" enctype="multipart/form-data">
 
     {% csrf_token %}
@@ -19,7 +19,7 @@
     </div>
 
         <div class="container">
-        <button class="btn btn-primary btn-lg btn-block" id="SubmittButton" type="submit" name="submit_button">Filter</button>
+        <button class="btn btn-primary btn-lg btn-block" id="SubmittButton" type="submit" name="submit_button">Filtrera</button>
         </div>
     </form>
         {{ test }}
@@ -27,7 +27,7 @@
     </div>
 
 <div class="panel_heading">
-              <h3 class="panel-title"><b>{{ category.category }} projects</b></h3>
+              <h3 class="panel-title"><b>Artiklar</b></h3>
           </div>
           <div class="panel panel-default">
 
@@ -39,11 +39,11 @@
                             <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
                         </h3>
                         <div class="project_atributes">
-                        Author: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
-                        Category:  <b>{{ project.category }}</b>
-                        Sub-category:  <b>{{ project.sub_category }}</b>
-                        Level:  <b>{{ project.difficulty_level }}</b>
-                        Publication date: <b>{{ project.pub_date }}</b>
+                        Författare: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        Kategori:  <b>{{ project.category }}</b>
+                        Underkategori:  <b>{{ project.sub_category }}</b>
+                        Nivå:  <b>{{ project.difficulty_level }}</b>
+                        Publiceringsdatum: <b>{{ project.pub_date }}</b>
                         </div>
                         <p>{{ project.description }}</p>
                         </div>
@@ -51,8 +51,8 @@
 
                         {% else %}
                         <a href="" class="list-group-item">
-                        <h4 class="list-group-item-heading">No match found!</h4>
-                        <p class="list-group-item-text">Try another combination!</p>
+                        <h4 class="list-group-item-heading">Ingen träff!</h4>
+                        <p class="list-group-item-text">Försök med en annan kombination!</p>
                         </a>
                         {% endif %}
                 

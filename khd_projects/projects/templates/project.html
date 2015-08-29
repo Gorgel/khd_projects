@@ -18,11 +18,11 @@
                         <div class="project_item">
 
                         <div class="project_atributes">
-                        Author: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
-                        Category:  <b>{{ project.category }}</b>
-                            Sub-category:  <b>{{ project.sub_category }}</b>
-                            Level:  <b>{{ project.difficulty_level }}</b>
-                        Publication date: <b>{{ project.pub_date }}</b>
+                        Författare: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        Kategori:  <b>{{ project.category }}</b>
+                            Underkategori:  <b>{{ project.sub_category }}</b>
+                            Nivå:  <b>{{ project.difficulty_level }}</b>
+                        Publiceringsdatum: <b>{{ project.pub_date }}</b>
                         </div>
                         </div>
                               <h1>{{ project.title }}</h1>

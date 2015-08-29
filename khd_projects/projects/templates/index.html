@@ -6,17 +6,16 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
           <img class="logo" src="/static/projects/images/khdlogo2.png">
-        <h2>Welcome to <b>Kids Hack Day</b> innovation club page!</h2>
+        <h2>Välkommen till <b>Kids Hack Days</b> projektsida!</h2>
 
-        <p>We are a bunch of technology nerds that share the passion of trying to make kids interested in technology and inspire
-            them to become creators of technology rather than passive consumers.
-            In pursuit of this goal we started an innovation club for kids between 9 and 14 years old...
+        <p>Vi är ett gäng teknikintresserade individer som verkar för att väcka ett teknikintrese hos barn och inspirera dem till
+            att bli skapare av teknik istället för passiva konsumenter. På denna sida kan du finna kunskap och inspiration till
+            att förverkliga dina egna projekt.
             </p>
-        <p><a href="{% url 'projects:information_article' '1' %}" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
       </div>
             
           <div class="panel_heading">
-              <h3 class="panel-title"><b>New projects</b></h3>
+              <h3 class="panel-title"><b>Nya artiklar</b></h3>
           </div>
           <div class="panel panel-default">
 
@@ -28,11 +27,11 @@
                             <a href="{% url 'projects:project_viewer' project.user.username project.id project.slug %}">{{ project.title }}</a>
                         </h3>
                         <div class="project_atributes">
-                        Author: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
-                        Category:  <b>{{ project.category }}</b>
-                        Sub-category:  <b>{{ project.sub_category }}</b>
-                        Level:  <b>{{ project.difficulty_level }}</b>
-                        Publication date: <b>{{ project.pub_date }}</b>
+                        Författare: <b><a href="{% url 'projects:profile_page' project.user.username %}">{{ project.user.username }}</a></b>
+                        Kategori:  <b>{{ project.category }}</b>
+                        underkategori:  <b>{{ project.sub_category }}</b>
+                        nivå:  <b>{{ project.difficulty_level }}</b>
+                        Publiceringsdatum: <b>{{ project.pub_date }}</b>
                         </div>
                         <p>{{ project.description }}</p>
                         </div>
