@@ -5,6 +5,7 @@ import views
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^twitter_license', views.twitter_license, name='twitter_license'),
+    url(r'^gfdl_license', views.gfdl_license, name='gfdl_license'),
     url(r'^django_license', views.django_license, name='django_license'),
     url(r'^profile_page/(?P<username>\w+)', views.profile_page, name ='profile_page'),
     url(r'^information_article/(?P<id>\w+)', views.information_article, name ='information_article'),

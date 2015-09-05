@@ -215,6 +215,7 @@ def edit_project(request, id):
                 Project.objects.filter(id=project_id).delete()
                 model_instance = form.save(commit=False)
                 model_instance.user = user
+                model_instance.id = project_id
                 model_instance.save()
 
                 message = 'Your project was edited successfully!'
@@ -287,5 +288,9 @@ def twitter_license(request):
 def django_license(request):
 
     return render(request, "django_license.html")
+
+def gfdl_license(request):
+
+    return render(request, "gfdl_license.html")
 
 
