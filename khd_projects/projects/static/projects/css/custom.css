@@ -41,6 +41,7 @@ color: #D91B5B;
 }
 
 .container.border {
+    max-width: 800px;
     background: white;
     padding-left: 40px;
     padding-right: 40px;
@@ -50,6 +51,7 @@ color: #D91B5B;
 }
 
 .container.border.menu {
+    max-width: 800px;
     padding:0px;
     padding-bottom: 20px;
     border-left: solid 10px #2F405A;
@@ -57,6 +59,7 @@ color: #D91B5B;
 }
 
 .container.border.foot {
+    max-width: 800px;
     padding-top: 20px;
     background: white;
     background-color: #24282B;
